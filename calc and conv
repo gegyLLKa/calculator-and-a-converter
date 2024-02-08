@@ -1,0 +1,85 @@
+import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Calculator!");
+
+        while (true) {
+            System.out.println("\nPlease select an option:");
+            System.out.println("1. Standard Calculator");
+            System.out.println("2. Converter");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            if (choice == 1) {
+                standardCalculator(scanner);
+            } else if (choice == 2) {
+                converter(scanner);
+            } else if (choice == 0) {
+                System.out.println("Exiting the program. Goodbye!");
+                break;
+            } else {
+                System.out.println("Invalid choice. Please try again.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static void standardCalculator(Scanner scanner) {
+        System.out.println("\nStandard Calculator");
+        System.out.println("Supported operations: +, -, *, /");
+        System.out.print("Enter the first number: ");
+        double num1 = scanner.nextDouble();
+        System.out.print("Enter the operator (+, -, *, /): ");
+        char operator = scanner.next().charAt(0);
+        System.out.print("Enter the second number: ");
+        double num2 = scanner.nextDouble();
+
+        double result = 0;
+
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                result = num1 / num2;
+                break;
+            default:
+                System.out.println("Invalid operator.");
+                return;
+        }
+
+        System.out.println("Result: " + result);
+    }
+
+    private static void converter(Scanner scanner) {
+        System.out.println("\nConverter");
+        System.out.println("Supported conversions: 1. Celsius to Fahrenheit, 2. Fahrenheit to Celsius");
+        System.out.print("Enter the conversion option: ");
+        int option = scanner.nextInt();
+
+        if (option == 1) {
+            System.out.print("Enter the temperature in Celsius: ");
+            double celsius = scanner.nextDouble();
+            double fahrenheit = (celsius * 9 / 5) + 32;
+            System.out.println("Temperature in Fahrenheit: " + fahrenheit);
+        } else if (option == 2) {
+            System.out.print("Enter the temperature in Fahrenheit: ");
+            double fahrenheit = scanner.nextDouble();
+            double celsius = (fahrenheit - 32) * 5 / 9;
+            System.out.println("Temperature in Celsius: " + celsius);
+        } else {
+            System.out.println("Invalid option.");
+        }
+    }
+}
